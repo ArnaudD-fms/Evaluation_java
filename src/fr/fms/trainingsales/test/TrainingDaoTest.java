@@ -9,6 +9,7 @@ import org.junit.Test;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -26,6 +27,18 @@ public class TrainingDaoTest {
         String PASSWORD = "test";
         connection = DriverManager.getConnection(URL, USER, PASSWORD);
         trainingDao = new TrainingDaoImpl(connection);
+
+        try (Statement statement = connection.createStatement()) {
+            statement.executeUpdate("DELETE FROM ts_training");
+
+            statement.executeUpdate(
+                    "INSERT INTO ts_training (`tr_name`, `tr_description`, `tr_duration`, `tr_remote`, `tr_price`) VALUES " +
+                            "('Test1', 'Description du test 1', 10, false, 999.99)," +
+                            "('Test2', 'Description du test 2', 20, false, 999.99)," +
+                            "('Test3', 'Description du test 3', 30, true, 999.99)," +
+                            "('Test4', 'Description du test 4', 40, true, 999.99)"
+            );
+        }
     }
 
     @After
