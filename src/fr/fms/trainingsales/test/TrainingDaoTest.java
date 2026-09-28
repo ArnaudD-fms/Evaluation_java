@@ -30,6 +30,7 @@ public class TrainingDaoTest {
 
         try (Statement statement = connection.createStatement()) {
             statement.executeUpdate("DELETE FROM ts_training");
+            statement.executeUpdate("ALTER TABLE ts_training AUTO_INCREMENT = 1");
 
             statement.executeUpdate(
                     "INSERT INTO ts_training (`tr_name`, `tr_description`, `tr_duration`, `tr_remote`, `tr_price`) VALUES " +
@@ -52,5 +53,7 @@ public class TrainingDaoTest {
 
         assertNotNull(trainings);
         assertEquals("Test1", trainings.get(0).getName());
+        assertEquals(1, trainings.get(0).getId());
+        assertEquals("Description du test 3", trainings.get(2).getDescription());
     }
 }
