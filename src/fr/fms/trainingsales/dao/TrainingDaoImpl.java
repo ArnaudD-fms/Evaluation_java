@@ -42,6 +42,35 @@ public class TrainingDaoImpl implements TrainingDao{
         return Collections.emptyList();
     }
 
+    @Override
+    public List<Training> findByKeyword(String keyword) {
+
+        String sql = "SELECT * FROM ts_training WHERE tr_name LIKE ? OR tr_description LIKE ?";
+
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            String searchedWord = "%" + keyword + "%";
+            statement.setString(1, searchedWord);
+            statement.setString(2, searchedWord);
+
+            try (ResultSet resultSet = statement.executeQuery()) {
+
+                List<Training> trainings = new ArrayList<>();
+
+                while (resultSet.next()) {
+                    trainings.add(mapResultSetToTraining(resultSet));
+                }
+
+                return trainings;
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return Collections.emptyList();
+    }
+
     private static Training mapResultSetToTraining(ResultSet rs) throws SQLException {
         Training training = new Training(
                 rs.getString("tr_name"),

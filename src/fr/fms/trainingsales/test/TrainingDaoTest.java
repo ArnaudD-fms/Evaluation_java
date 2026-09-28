@@ -34,10 +34,10 @@ public class TrainingDaoTest {
 
             statement.executeUpdate(
                     "INSERT INTO ts_training (`tr_name`, `tr_description`, `tr_duration`, `tr_remote`, `tr_price`) VALUES " +
-                            "('Test1', 'Description du test 1', 10, false, 999.99)," +
-                            "('Test2', 'Description du test 2', 20, false, 999.99)," +
-                            "('Test3', 'Description du test 3', 30, true, 999.99)," +
-                            "('Test4', 'Description du test 4', 40, true, 999.99)"
+                            "('Java', 'Description du test Java', 10, false, 999.99)," +
+                            "('Java avancé', 'Description du test Java avancé', 20, false, 999.99)," +
+                            "('Python', 'Description du test Python', 30, true, 999.99)," +
+                            "('Python avancé', 'Description du test Python avancé', 40, true, 999.99)"
             );
         }
     }
@@ -48,12 +48,21 @@ public class TrainingDaoTest {
     }
 
     @Test
-    public void findAllTraining() {
+    public void findAllTrainings() {
         List<Training> trainings = trainingDao.findAll();
 
         assertNotNull(trainings);
-        assertEquals("Test1", trainings.get(0).getName());
+        assertEquals("Java", trainings.get(0).getName());
         assertEquals(1, trainings.get(0).getId());
-        assertEquals("Description du test 3", trainings.get(2).getDescription());
+        assertEquals("Description du test Python", trainings.get(2).getDescription());
+    }
+
+    @Test
+    public void findTrainingsByKeyword() {
+        String keyword = "Python";
+        List<Training> trainings = trainingDao.findByKeyword(keyword);
+
+        assertEquals(2, trainings.size());
+        assertEquals("Python avancé", trainings.get(1).getName());
     }
 }

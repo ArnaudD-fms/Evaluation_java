@@ -7,4 +7,6 @@ import java.util.List;
 public interface TrainingDao {
 
     List<Training> findAll();
+
+    List<Training> findByKeyword(String keyword);
 }
