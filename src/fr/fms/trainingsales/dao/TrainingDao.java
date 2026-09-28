@@ -9,4 +9,6 @@ public interface TrainingDao {
     List<Training> findAll();
 
     List<Training> findByKeyword(String keyword);
+
+    List<Training> findByRemote(boolean isRemote);
 }

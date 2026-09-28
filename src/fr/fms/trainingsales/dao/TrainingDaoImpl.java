@@ -71,6 +71,33 @@ public class TrainingDaoImpl implements TrainingDao{
         return Collections.emptyList();
     }
 
+    @Override
+    public List<Training> findByRemote(boolean isRemote) {
+
+        String sql = "SELECT * FROM ts_training WHERE tr_remote = ?";
+
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setBoolean(1, isRemote);
+
+            try (ResultSet resultSet = statement.executeQuery()) {
+
+                List<Training> trainings = new ArrayList<>();
+
+                while (resultSet.next()) {
+                    trainings.add(mapResultSetToTraining(resultSet));
+                }
+
+                return trainings;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return Collections.emptyList();
+    }
+
     private static Training mapResultSetToTraining(ResultSet rs) throws SQLException {
         Training training = new Training(
                 rs.getString("tr_name"),

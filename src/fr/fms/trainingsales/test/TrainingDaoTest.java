@@ -65,4 +65,22 @@ public class TrainingDaoTest {
         assertEquals(2, trainings.size());
         assertEquals("Python avancé", trainings.get(1).getName());
     }
+
+    @Test
+    public void findRemoteTrainings() {
+        boolean isRemote = true;
+        List<Training> trainings = trainingDao.findByRemote(isRemote);
+
+        assertEquals(2, trainings.size());
+        assertEquals("Python", trainings.get(0).getName());
+    }
+
+    @Test
+    public void findInPersonTrainings() {
+        boolean isRemote = false;
+        List<Training> trainings = trainingDao.findByRemote(isRemote);
+
+        assertEquals(2, trainings.size());
+        assertEquals("Java", trainings.get(0).getName());
+    }
 }
