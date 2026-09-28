@@ -13,26 +13,27 @@ import java.util.List;
 
 public class TrainingDaoImpl implements TrainingDao{
 
+    private final Connection connection;
+
+    public TrainingDaoImpl(Connection connection) {
+        this.connection = connection;
+    }
+
     @Override
     public List<Training> findAll() {
 
         String sql = "SELECT * FROM ts_training";
 
-        try (
-                Connection connection = DatabaseConnection.getConnection();
-                PreparedStatement statement = connection.prepareStatement(sql)
-        ) {
+        try (PreparedStatement statement = connection.prepareStatement(sql);
+             ResultSet resultSet = statement.executeQuery()) {
 
-            try (ResultSet resultSet = statement.executeQuery()) {
+            List<Training> trainings = new ArrayList<>();
 
-                List<Training> trainings = new ArrayList<>();
-
-                while (resultSet.next()) {
-                    trainings.add(mapResultSetToTraining(resultSet));
-                }
-
-                return trainings;
+            while (resultSet.next()) {
+                trainings.add(mapResultSetToTraining(resultSet));
             }
+
+            return trainings;
 
         } catch (SQLException e) {
             e.printStackTrace();
