@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS `ts_training` (
     `tr_description` TEXT NOT NULL,
     `tr_duration` INT NOT NULL,
     `tr_remote` BOOLEAN NOT NULL,
-    `tr_price` DECIMAL(10,2),
+    `tr_price` DECIMAL(10,2) NOT NULL,
     PRIMARY KEY (`tr_id_training`)
 );
 
