@@ -2,6 +2,9 @@ package fr.fms.trainingsales.business;
 
 import java.util.Scanner;
 
+/**
+ * Classe permettant de contrôler et de retourner les saisies utilisateurs.
+ */
 public class ConsoleHandler {
 
     private final Scanner sc;
@@ -10,6 +13,12 @@ public class ConsoleHandler {
         this.sc = sc;
     }
 
+    /**
+     * Vérifie que l'utilisateur rentre un nombre entre 1 et le maximum de choix proposés.
+     *
+     * @param max le maximum de choix possible
+     * @return un int correspondant au choix de l'utilisateur
+     */
     public int getUserChoice(int max) {
 
         String invalidInputMessage = "Saisie invalide. Veuillez saisir un nombre entier entre 1 et " + max;
@@ -30,6 +39,11 @@ public class ConsoleHandler {
         }
     }
 
+    /**
+     * Vérifie que l'utilisateur ne rentre pas une chaîne de caractère vide.
+     *
+     * @return une String contenant le mot-clé ou la phrase entrée par l'utilisateur
+     */
     public String getKeyword() {
 
         while (true) {

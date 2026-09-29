@@ -1,5 +1,8 @@
 package fr.fms.trainingsales.model;
 
+/**
+ * Représente un utilisateur connecté pouvant passer commande pour une formation.
+ */
 public class User {
     private int id;
     private String email;

@@ -6,6 +6,10 @@ import fr.fms.trainingsales.model.Training;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Classe permettant d'afficher en console les actions que l'utilisateur peut réaliser, ainsi que
+ * d'appeler les méthodes de DAO correspondantes.
+ */
 public class TrainingSales {
 
     private final ConsoleHandler console;
@@ -16,6 +20,9 @@ public class TrainingSales {
         this.trainingDao = trainingDao;
     }
 
+    /**
+     * Demande à l'utilisateur de choisir quel formations il souhaite afficher en console.
+     */
     public void displayTrainingsMenu() {
         System.out.println("1 - Afficher toutes les formations");
         System.out.println("2 - Rechercher les formations par mot clé");
@@ -30,6 +37,7 @@ public class TrainingSales {
                 trainings = trainingDao.findAll();
                 break;
             case 2:
+                System.out.println("Saisissez un mot clé ou une phrase que vous souhaitez rechercher : ");
                 String keyword = console.getKeyword();
                 trainings = trainingDao.findByKeyword(keyword);
                 break;
@@ -43,6 +51,11 @@ public class TrainingSales {
         }
     }
 
+    /**
+     * Demande à l'utilisateur de choisir s'il souhaite afficher les formations en présentiel ou distanciel.
+     *
+     * @return un booléen indiquant si l'utilisateur souhaite afficher les formations à distance
+     */
     private boolean askForRemote() {
         System.out.println("1 - Afficher les formations en présentiel");
         System.out.println("2 - Afficher les formations en distanciel");

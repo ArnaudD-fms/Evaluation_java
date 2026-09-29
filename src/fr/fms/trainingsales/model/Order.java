@@ -2,6 +2,9 @@ package fr.fms.trainingsales.model;
 
 import java.util.Date;
 
+/**
+ * Représente une commande passée pour l'achat d'une formation
+ */
 public class Order {
     private int id;
     private Date date;

@@ -4,10 +4,11 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+/**
+ * Classe permettant de se connecter à la BDD
+ */
 public class DatabaseConnection {
-    private static final String URL =
-            "jdbc:mariadb://localhost:3306/training_sales";
-
+    private static final String URL = "jdbc:mariadb://localhost:3306/training_sales";
     private static final String USER = "admin";
     private static final String PASSWORD = "unbreakable_password";
 

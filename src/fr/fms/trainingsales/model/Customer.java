@@ -1,5 +1,8 @@
 package fr.fms.trainingsales.model;
 
+/**
+ * Représente le client pour qui une formation a été commandé
+ */
 public class Customer {
     private int id;
     private String firstName;

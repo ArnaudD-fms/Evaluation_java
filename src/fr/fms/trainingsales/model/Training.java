@@ -2,6 +2,9 @@ package fr.fms.trainingsales.model;
 
 import java.math.BigDecimal;
 
+/**
+ * Représente une formation.
+ */
 public class Training {
     private int id;
     private String name;

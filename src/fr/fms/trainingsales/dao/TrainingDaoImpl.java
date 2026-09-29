@@ -1,8 +1,6 @@
 package fr.fms.trainingsales.dao;
 
-import fr.fms.trainingsales.config.DatabaseConnection;
 import fr.fms.trainingsales.model.Training;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,6 +9,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Implémentation de l'interface {@link TrainingDao} permettant
+ * d'accéder aux formations enregistrées en base de données.
+ *
+ * <p>Cette classe utilise une connection à une base de donnée SQL.</p>
+ *
+ */
 public class TrainingDaoImpl implements TrainingDao{
 
     private final Connection connection;
@@ -98,6 +103,13 @@ public class TrainingDaoImpl implements TrainingDao{
         return Collections.emptyList();
     }
 
+    /**
+     * Transforme le résultat de la requête en objet {@link Training}.
+     *
+     * @param rs résultat de la requête SQL
+     * @return une instance de {@link Training} construire à partir du {@link ResultSet}
+     * @throws SQLException si une erreur survient lors de la lecture du résultat
+     */
     private static Training mapResultSetToTraining(ResultSet rs) throws SQLException {
         Training training = new Training(
                 rs.getString("tr_name"),
