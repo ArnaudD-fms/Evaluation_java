@@ -29,4 +29,19 @@ public class ConsoleHandler {
             }
         }
     }
+
+    public String getKeyword() {
+
+        while (true) {
+            String input = sc.nextLine().trim();
+
+            if (!input.isEmpty()) {
+                return input;
+            }
+
+            System.out.println(
+                    "Saisie invalide. votre recherche ne doit pas être vide."
+            );
+        }
+    }
 }

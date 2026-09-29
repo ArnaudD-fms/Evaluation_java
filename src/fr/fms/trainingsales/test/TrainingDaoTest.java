@@ -23,7 +23,7 @@ public class TrainingDaoTest {
     @Before
     public void setUp() throws SQLException {
         String URL = "jdbc:mariadb://localhost:3306/test_training_sales";
-        String USER = "admin";
+        String USER = "admin_test";
         String PASSWORD = "test";
         connection = DriverManager.getConnection(URL, USER, PASSWORD);
         trainingDao = new TrainingDaoImpl(connection);
