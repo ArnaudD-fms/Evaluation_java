@@ -1,5 +1,6 @@
 package fr.fms.trainingsales.test;
 
+import fr.fms.trainingsales.config.TestDatabaseConnection;
 import fr.fms.trainingsales.dao.TrainingDaoImpl;
 import fr.fms.trainingsales.model.Training;
 import org.junit.After;
@@ -7,7 +8,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
@@ -22,10 +22,7 @@ public class TrainingDaoTest {
 
     @Before
     public void setUp() throws SQLException {
-        String URL = "jdbc:mariadb://localhost:3306/test_training_sales";
-        String USER = "admin_test";
-        String PASSWORD = "test";
-        connection = DriverManager.getConnection(URL, USER, PASSWORD);
+        connection = TestDatabaseConnection.getConnection();
         trainingDao = new TrainingDaoImpl(connection);
 
         try (Statement statement = connection.createStatement()) {
