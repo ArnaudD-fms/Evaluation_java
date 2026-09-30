@@ -14,7 +14,7 @@ public class ConsoleHandler {
     }
 
     /**
-     * Vérifie que l'utilisateur rentre un nombre entre 1 et le maximum de choix proposés.
+     * Vérifie que l'utilisateur rentre un nombre entre un et le maximum de choix proposés.
      *
      * @param max le maximum de choix possible
      * @return un int correspondant au choix de l'utilisateur
@@ -44,7 +44,7 @@ public class ConsoleHandler {
      *
      * @return une String contenant le mot-clé ou la phrase entrée par l'utilisateur
      */
-    public String getKeyword() {
+    public String getValidString() {
 
         while (true) {
             String input = sc.nextLine().trim();

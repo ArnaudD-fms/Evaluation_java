@@ -3,6 +3,8 @@ import fr.fms.trainingsales.business.TrainingSales;
 import fr.fms.trainingsales.config.DatabaseConnection;
 import fr.fms.trainingsales.dao.TrainingDao;
 import fr.fms.trainingsales.dao.TrainingDaoImpl;
+import fr.fms.trainingsales.dao.UserDao;
+import fr.fms.trainingsales.dao.UserDaoImpl;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -16,8 +18,9 @@ public class Main {
 
         Connection connection = DatabaseConnection.getConnection();
         TrainingDao trainingDao = new TrainingDaoImpl(connection);
+        UserDao userDao = new UserDaoImpl(connection);
 
-        TrainingSales trainingSales = new TrainingSales(consoleHandler, trainingDao);
+        TrainingSales trainingSales = new TrainingSales(consoleHandler, trainingDao, userDao);
 
         boolean proceed = true;
         while(proceed) {
