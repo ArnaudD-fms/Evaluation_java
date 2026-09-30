@@ -21,14 +21,17 @@ public class TrainingSales {
     }
 
     /**
-     * Demande à l'utilisateur de choisir quel formations il souhaite afficher en console.
+     * Demande à l'utilisateur de choisir quelles formations il souhaite afficher en console.
+     *
+     * @return un booléen indiquant si l'application doit de poursuivre ou non
      */
-    public void displayTrainingsMenu() {
+    public boolean displayTrainingsMenu() {
         System.out.println("1 - Afficher toutes les formations");
         System.out.println("2 - Rechercher les formations par mot clé");
         System.out.println("3 - Rechercher les formations par modalité (présentiel ou distanciel)");
+        System.out.println("4 - Quitter l'application");
 
-        int userChoise = console.getUserChoice(3);
+        int userChoise = console.getUserChoice(4);
 
         List<Training> trainings = new ArrayList<>();
 
@@ -44,11 +47,16 @@ public class TrainingSales {
             case 3:
                 boolean isRemote = askForRemote();
                 trainings = trainingDao.findByRemote(isRemote);
+                break;
+            case 4:
+                return false;
         }
 
         for (Training training : trainings) {
-            System.out.println(training.getName());
+            System.out.println(training + "\n");
         }
+
+        return true;
     }
 
     /**
@@ -60,8 +68,8 @@ public class TrainingSales {
         System.out.println("1 - Afficher les formations en présentiel");
         System.out.println("2 - Afficher les formations en distanciel");
 
-        int userChoise = console.getUserChoice(2);
+        int userChoice = console.getUserChoice(2);
 
-        return userChoise == 2;
+        return userChoice == 2;
     }
 }

@@ -68,4 +68,15 @@ public class Training {
     public void setPrice(BigDecimal price) {
         this.price = price;
     }
+
+    @Override
+    public String toString() {
+        return "---------------------------"
+                + "\n" + name
+                + "\n" + description
+                + "\n" + "Durée : " + duration + " jours"
+                + "\n" + "Prix : " + price + "€"
+                + "\n" + (remote ? "A distance" : "En présentiel")
+                + "\n" + "---------------------------";
+    }
 }

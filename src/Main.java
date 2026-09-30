@@ -19,7 +19,11 @@ public class Main {
 
         TrainingSales trainingSales = new TrainingSales(consoleHandler, trainingDao);
 
-        trainingSales.displayTrainingsMenu();
+        boolean proceed = true;
+        while(proceed) {
+            proceed = trainingSales.displayTrainingsMenu();
+        }
+
 
     }
 }
