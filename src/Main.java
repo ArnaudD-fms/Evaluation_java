@@ -24,6 +24,8 @@ public class Main {
             proceed = trainingSales.displayTrainingsMenu();
         }
 
+        scanner.close();
+        connection.close();
 
     }
 }
